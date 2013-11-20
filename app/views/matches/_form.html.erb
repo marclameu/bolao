@@ -1,0 +1,40 @@
+<%= form_for(@match) do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :grupo %><br />
+    <%= f.select :group_id, @groups.map {|g| [g.name,g.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :time_da_casa %><br />
+    <%= f.select :team_home_id, @teams.map {|t| [t.name,t.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :time_visitante %><br />
+    <%= f.select :team_alway_id, @teams.map {|t| [t.name,t.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :score_team_home %><br />
+    <%= f.number_field :score_team_home %>
+  </div>
+  <div class="field">
+    <%= f.label :score_team_away %><br />
+    <%= f.number_field :score_team_away %>
+  </div>
+  <div class="field">
+    <%= f.label :date_match %><br />
+    <%= f.datetime_select :date_match %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

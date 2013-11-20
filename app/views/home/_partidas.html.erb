@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+<%= h current_user.email%>
+<% end %>
+<h3><%= @groups.first.championship.name if @groups.present? and @groups.first.championship.present? %></h3>
+<% if @groups.present?%>
+	  <% @groups.each do |g| %>
+		
+		  <div class="container">
+				  <div class="span12" style="margin:0 0 0 300px"><strong>Grupo <%=g.name%></strong></div>
+		          <% g.matches.each do |m| %>
+			  		<div class="row" style="background-color:white">
+				        <div class="span2" style="text-align: right"><%= standart_date(m.date_match, "/") %></div>
+			    	    <div class="span2" style="text-align: left"><%= m.team_home.name %></div>
+					    <div class="span" style="text-align: left"><%= m.score_team_home.to_s%></div>
+					    <div class="span" style="text-align: left">X</div>
+					    <div class="span1" style="text-align: left"><%=m.score_team_away.to_s%></div>
+					    <div class="span2" style="text-align: left"><%= m.team_alway.name%></div>
+					</div>
+  		          <% end %>		     		   
+		  </div>
+						<div style="text-align:center">	---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- </div>
+	  <% end %>		  
+	<% end %>

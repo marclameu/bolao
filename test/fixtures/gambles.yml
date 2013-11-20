@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  team_home_score: MyString
+  integer: MyString
+  team_away_score: 1
+  user: 
+
+two:
+  team_home_score: MyString
+  integer: MyString
+  team_away_score: 1
+  user: 

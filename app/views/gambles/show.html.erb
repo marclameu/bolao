@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Team home score:</b>
+  <%= @gamble.team_home_score %>
+</p>
+
+<p>
+  <b>Integer:</b>
+  <%= @gamble.integer %>
+</p>
+
+<p>
+  <b>Team away score:</b>
+  <%= @gamble.team_away_score %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @gamble.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_gamble_path(@gamble) %> |
+<%= link_to 'Back', gambles_path %>

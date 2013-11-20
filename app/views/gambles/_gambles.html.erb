@@ -1,0 +1,45 @@
+<% if user_signed_in? %>
+<%= h current_user.email%>
+<% end %>
+<h3><%= @groups.first.championship.name if @groups.present? and @groups.first.championship.present? %></h3>
+<% if @groups.present?%>
+	  <% @groups.each do |g| %>
+		
+		  <div class="container">
+				  <div class="span12" style="margin:-10px 0 0 250px"><strong>Grupo <%=g.name%></strong></div>
+				  <% @show_flash = false %>
+				  <%= form_for :gamble,:remote=>true,  :url => update_or_create_all_gambles_path do |x| %>
+			          <% g.matches.each do |m| %>
+						<% @ug = @user_gambles.select{|ug| ug.match_id == m.id }%>
+						<% @show_flash = (m.id.to_s == flash[:id_match]) %>
+						<%= fields_for "matchgamble[#{m.id.to_s}][all_gambles]",  Gamble.new() do |g|  %>
+						  		<div class="row" style="background-color:white">
+							        <div class="span2" style="text-align: right"><%= standart_date(m.date_match, "/") %></div>
+									<div class="span1" style="text-align: left"><%= m.team_home.name%></div>
+									<% @team_home_score = "" %>
+									<% @team_away_score = "" %>
+									<% if @ug.present? %>
+										<% @team_home_score = @ug[0].team_home_score%>
+										<% @team_away_score = @ug[0].team_away_score%>
+									<% end %>
+									<div class="span" style="text-align: left"><%= g.text_field :team_home_score, :value => @team_home_score, :style=>"width:15px;" %></div>
+								    <div class="span" style="text-align: left"><%= %></div>
+								    <div class="span" style="text-align: left">X</div>
+								    <div class="span1" style="text-align: left"><%= g.text_field :team_away_score, :value => @team_away_score,  :style=>"width:15px;" %></div>
+								    <div class="span2" style="text-align: left"><%= m.team_alway.name%></div>
+								</div>							
+							<% end %>
+	  		          <% end %>	
+     			 <%= submit_tag nil, :class => 'btn btn-small btn-primary' %>
+		        <% if @show_flash and flash[:notice]  %>				
+			        <div class="alert">
+			           <button type="button" class="close" data-dismiss="alert">×</button>
+			           <strong><%= flash[:notice] %></strong><br/>
+			        </div>
+		  		<% end %>
+		        <% end %>
+				
+		  </div>
+						<div style="text-align:center">	---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- </div>
+	  <% end %>		  
+	<% end %>
