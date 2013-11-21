@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
-<%= h current_user.email%>
+
 <% end %>
-<h3><%= @groups.first.championship.name if @groups.present? and @groups.first.championship.present? %></h3>
+<h3>  Partidas da <%=@groups.first.championship.name if @groups.present? and @groups.first.championship.present? %></h3>
 <% if @groups.present?%>
 	  <% @groups.each do |g| %>
 		
