@@ -26,7 +26,7 @@ end
 
 group :production do
    gem 'pg'
-end
+send
 
 gem 'jquery-rails'
 
